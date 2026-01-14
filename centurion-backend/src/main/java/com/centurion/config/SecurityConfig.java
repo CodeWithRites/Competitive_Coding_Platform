@@ -8,26 +8,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http
-            // Disable CSRF for REST APIs
-            .csrf(csrf -> csrf.disable())
+	    http
+	        .csrf(csrf -> csrf.disable())
+	        .authorizeHttpRequests(auth -> auth
+	            .requestMatchers("/api/auth/**").permitAll()
+	            .requestMatchers("/api/dashboard").permitAll() // 🔥 ADD THIS
+	            .anyRequest().authenticated()
+	        );
 
-            // Authorization rules
-            .authorizeHttpRequests(auth -> auth
-                // Allow login API without authentication
-                .requestMatchers("/api/auth/login").permitAll()
-
-                // Any other request needs authentication
-                .anyRequest().authenticated()
-            )
-
-            // Disable default login form & basic auth popup
-            .formLogin(form -> form.disable())
-            .httpBasic(basic -> basic.disable());
-
-        return http.build();
+	    return http.build();
+	
     }
 }

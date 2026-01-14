@@ -19,6 +19,7 @@ public class AuthService {
                 .findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        // IMPORTANT: plain text comparison (Day‑2 level)
         if (!user.getPassword().equals(password)) {
             throw new RuntimeException("Invalid password");
         }
