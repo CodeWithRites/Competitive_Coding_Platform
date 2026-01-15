@@ -69,7 +69,7 @@ export default function Navbar() {
                 {profileOpen && (
                   <div className="profile-menu">
                     <p onClick={() => navigate("/leaderboard")}>My Leaderboard</p>
-                    <p onClick={() => navigate("/profile")}>My Profile</p>
+                    <p onClick={() => navigate("/StudentProfile")}>My Profile</p>
                     <p onClick={() => navigate("/courses")}>My Courses</p>
                     <p onClick={logout}>Logout</p>
                   </div>

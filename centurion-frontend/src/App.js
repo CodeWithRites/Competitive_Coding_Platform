@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
+import StudentProfile from "./pages/StudentProfile";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path="/about" element={<h2>About</h2>} />
       <Route path="/features" element={<h2>Features</h2>} />
       <Route path="/contact" element={<h2>Contact</h2>} />
+      <Route path="/StudentProfile" element={<StudentProfile />} />
     </Routes>
   );
 }
