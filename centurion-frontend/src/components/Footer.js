@@ -2,64 +2,44 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-container">
+    <footer class="footer">
+  <div class="footer-wrapper">
 
-        {/* LEFT SECTION */}
-        <div className="footer-left">
-          <h2 className="footer-logo">⚡ Centurion</h2>
-          <p className="footer-desc">
-            College‑focused competitive coding platform built for rankings,
-            contests and placements.
-          </p>
+    <div class="footer-card brand">
+      <h2>CENTURION</h2><br/>
+      ️
+      <p>
+        Learn, practice, and master competitive programming with structured problems
+        and real-world coding challenges.
+      </p>
+    </div>
 
-          <div className="footer-links">
-            <div>
-              <h4>Company</h4>
-              <p>About Us</p>
-              <p>Careers</p>
-              <p>Contact</p>
-            </div>
+    <div class="footer-card links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/competitive">Competitive Coding</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
 
-            <div>
-              <h4>Explore</h4>
-              <p>Problems</p>
-              <p>Contests</p>
-              <p>Leaderboards</p>
-            </div>
+    <div class="footer-card query">
+      <h3>Have a Query?</h3>
+      <form>
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Query" rows="3" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
 
-            <div>
-              <h4>Learn</h4>
-              <p>DSA</p>
-              <p>Web Dev</p>
-              <p>Languages</p>
-            </div>
+  </div>
 
-            <div>
-              <h4>Prepare</h4>
-              <p>Interviews</p>
-              <p>Aptitude</p>
-              <p>System Design</p>
-            </div>
-          </div>
-        </div>
+  <div class="footer-bottom">
+    © 2026 Centurion. Built for learning, not plagiarism.
+  </div>
+</footer>
 
-        {/* RIGHT QUERY FORM */}
-        <div className="footer-right">
-          <div className="query-box">
-            <h3>Have a Query?</h3>
-            <input type="text" placeholder="Your Name" />
-            <input type="email" placeholder="Your Email" />
-            <textarea placeholder="Your Message" />
-            <button>Send Message</button>
-          </div>
-        </div>
-      </div>
 
-      {/* BOTTOM BAR */}
-      <div className="footer-bottom">
-        © 2026 Centurion Coding Platform • Built for Students 🚀
-      </div>
-    </footer>
   );
 }

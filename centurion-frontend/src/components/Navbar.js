@@ -7,14 +7,24 @@ import "../index.css";
 export default function Navbar() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+
   const [showLogin, setShowLogin] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.body.classList.toggle("dark");
+  };
+
+  const handleProtectedNavigation = (path) => {
+    const completed = localStorage.getItem("studentProfileCompleted");
+
+    if (completed !== "true") {
+      navigate("/student-profile");
+    } else {
+      navigate(path);
+    }
   };
 
   return (
@@ -28,16 +38,9 @@ export default function Navbar() {
 
         {/* MIDDLE */}
         <div className="nav-center">
-          <div className="dropdown">
-            <span onClick={() => setMenuOpen(!menuOpen)}>Menu ▾</span>
-            {menuOpen && (
-              <div className="dropdown-menu">
-                <p onClick={() => { if (user) { navigate("/competitive-coding"); } else { setShowLogin(true); } setMenuOpen(false); }}>Competitive Coding</p>
-                <p onClick={() => { if (user) { navigate("/tutorials"); } else { setShowLogin(true); } setMenuOpen(false); }}>Tutorials</p>
-              </div>
-            )}
-          </div>
-
+          {user && (
+            <span className="nav-link" onClick={() => handleProtectedNavigation("/tutorials")}>Tutorials</span>
+          )}
           <span className="nav-link" onClick={() => navigate("/about")}>About</span>
           <span className="nav-link" onClick={() => navigate("/features")}>Features</span>
           <span className="nav-link" onClick={() => navigate("/contact")}>Contact</span>
@@ -55,9 +58,8 @@ export default function Navbar() {
             </button>
           ) : (
             <>
-              <button className="icon-btn" onClick={() => alert("Notifications")}>
-                🔔
-              </button>
+              <button className="icon-btn">🔔</button>
+
               <div className="profile">
                 <span
                   className="profile-icon"
@@ -68,9 +70,18 @@ export default function Navbar() {
 
                 {profileOpen && (
                   <div className="profile-menu">
-                    <p onClick={() => navigate("/leaderboard")}>My Leaderboard</p>
-                    <p onClick={() => navigate("/StudentProfile")}>My Profile</p>
-                    <p onClick={() => navigate("/courses")}>My Courses</p>
+                    <p onClick={() => handleProtectedNavigation("/leaderboard")}>
+                      My Leaderboard
+                    </p>
+                    <p onClick={() => navigate("/student-profile")}>
+                      My Profile
+                    </p>
+                    <p onClick={() => handleProtectedNavigation("/courses")}>
+                      My Courses
+                    </p>
+                    <p onClick={() => handleProtectedNavigation("/competitive-coding")}>
+                      Competitive Coding
+                    </p>
                     <p onClick={logout}>Logout</p>
                   </div>
                 )}
